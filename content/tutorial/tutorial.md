@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro to React"
+title: "Tutorial: React မိတ်ဆက်"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
@@ -12,77 +12,77 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+ဤသင်ခန်းစာသည် Reactနှင့်ပတ်သတ်၍ သိရှိခဲ့ပြီးသော အသိပညာဗဟုသုတများနှင့် မသက်ဆိုင်ပါ။
 
-## Before We Start the Tutorial {#before-we-start-the-tutorial}
+## သင်ခန်းစာကို ငါတို့မစတင်မီ {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+ဤသင်ခန်းစာမှာ အသေးစားဂိမ်းလေးတစ်ခုဆောက်ပါမည်။ **သင်က ဂိမ်းတွေကို တည်ဆောက်သူမဟုတ်တဲ့အတွက်ကြောင့် ဒါကို ကျော်သွားနိုင်ပါသည်။ ဒါပေမယ့် ကြိုးစားကြည့်ပါ။** သင်ခန်းစာမှာ လေ့လာရမည့်နည်းစနစ်များသည်မည်သည့် React app ကို မဆိုတည်ဆောက်ရန် အခြေခံဖြစ်တာကြောင့် ဒါကိုကျွမ်းကျင်ရင် ကောင်းကောင်းနားလည်သွားမည်ဖြစ်ပါသည်။
 
->Tip
+>အကြံပြုချက်
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+>ဤသင်ခန်းစာသည် လေ့လာရင်း တစ်ပါတည်း လုပ်ဆောင်တက်သူများ အတွက် ရည်ရွယ်ပါသည်။ အကယ်၍ သဘောတရားများကို အခြေခံမှစ၍ သင်ယူခြင်းကို ပိုနှစ်သက်ပါက ကျွန်ုပ်တို့၏ [step-by-step guide](/docs/hello-world.html)ကို သွားရောက်ကြည့်ရှုပါ။ သင်ခန်းစာနှင့် လမ်းညွှန်ချက်သည် တစ်ခုနဲ့တစ်ခု ဆ​က်စပ်နေတာကို တွေ့နိုင်ပါသည်။
 
-The tutorial is divided into several sections:
+သင်ခန်းစာကို အောက်ပါအတိုင်းကဏ္ဍများခွဲထားပါသည်:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
-* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
+* [Setup for the Tutorial](#setup-for-the-tutorial) သည် သင်ခန်းစာမှာ လိုက်ပါလုပ်ဆောင်ရမည့် **လမ်းစတစ်ခုကို** ပေးပါလိမ့်မည်။
+* [Overview](#overview) သည် React၏ **အခြေခံတွေဖြစ်သည့်** components၊ props၊ နှင့် state တို့ကို သင်ပေးပါလိမ့်မည်။
+* [Completing the Game](#completing-the-game) သည် React developmentတွင် **အသုံးများဆုံးဖြစ်သည့် နည်းစနစ်များကို** သင်ပေးပါလိမ့်မည်။
+* [Adding Time Travel](#adding-time-travel) သည် React၏ ထူးခြားသော အားသာချက်များကို **နက်နက်ရှိုင်းရှိုင်းနားလည်** စေပါလိမ့်မည်။
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+ဤသင်ခန်းစာကို ကျွမ်းကျင်ဖို့ တစ်ကြိမ်တည်းဖြင့် အပိုင်းအားလုံးကို အပြီးလေ့လာရန် မလိုပါ။ တစ်ပိုင်း (သို့မဟုတ်) နှစ်ပိုင်း ဖြစ်ဖြစ် သင်တတ်နိုင်သလောက် ကြိုးစားပါ။
 
-### What Are We Building? {#what-are-we-building}
+### ငါတို့ ဘာကို တည်ဆောက်ကြမှာလဲ? {#what-are-we-building}
 
-In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
+သင်ခန်းစာထဲမှာ interactiveဖြစ်သည့် tic-tac-toe game တစ်ခုကို Reactဖြင့် ဘယ်လိုတည်ဆောက်ရမလဲဆိုတာ ပြပေးပါမည်။
 
-You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+ကျွန်ုပ်တို့ ဘာကိုတည်ဆောက်မလဲဆိုတာ **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)** မှာ သင်မြင်နိုင်ပါသည်။ အကယ်၍ codeကို နားမလည်လျှင် (သို့မဟုတ်) codeရဲ့ ရေးသားနည်းကို အကျွမ်းတဝင်မရှိလျှင် စိတ်ပူရန်မလိုပါ။ ဒီသင်ခန်းစာရဲ့ ရည်ရွယ်ချက်က သင့်ကို React နှင့် ၄င်း၏ ရေးသားနည်းကို နားလည်ရန်ကူညီဖို့ ဖြစ်ပါသည်။
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+သင်ခန်းစာကိုမဆက်မီ tic-tac-toe game ကို ကြည့်ရှုရန် အကြံပြုလိုပါသည်။ သတိထားမိလိမ့်မည့် အချက်တစ်ချက်ကတော့ game board၏ ညာဘက်က အမှတ်စဥ်စာရင်းဖြစ်ပါသည်။ ဒီစာရင်းသည် သင်gameထဲမှာလုပ်ခဲ့သည့် ရွှေ့လျားမှုတွေအားလုံး၏ မှတ်တမ်းတစ်ခုကိုပေးပြီး ၄င်းသည် game၏ လှုပ်ရှားမှုအလိုက် ပြုပြင်ပေးပါသည်။
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+tic-tac-toe game ကို အကျွမ်းတဝင်ရှိလျှင် ပိတ်နိုင်ပါသည်။ ဤသင်ခန်းစာတွင်ရိုးရှင်းသော template မှစတင်ပါမည်။ နောက်တစ်ဆင့်သည် game ကိုစတင်တည်ဆောက်နိုင်စေရန် ပြင်ဆင်ပေးရန်ဖြစ်ပါသည်။
 
-### Prerequisites {#prerequisites}
+### လိုအပ်ချက်များ {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+သင်အနေဖြင့် HTML, Javascript တို့ကို ရင်းနှီးလိမ့်မည်လို့ ယူဆပါတယ်။ သို့သော် အခြား programming language တစ်ခုမှလာခဲ့လျှင်ပင် လိုက်လုပ်နိုင်သင့်ပါသည်။ သင့်ကို programming ၏ သဘောတရားများဖြစ်သော functions, objects, arrays, classes နှင့် lesser extent တို့ဖြင့် ရင်းနှီးကျွမ်းဝင်လိမ့်မည်လို့ မှတ်ယူပါသည်။
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+အကယ်၍ JavaScript ကိုပြန်လည်လေ့လာရန် လိုအပ်ပါက [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)ကို ဖတ်ရန် အကြံပြုပါသည်။ React သည် JavaScript ၏ လက်ရှိ version တစ်ခုဖြစ်သော ES6မှ အချို့သော features များကို အသုံးပြုနေကြောင်း သတိပြုပါ။ ဤသင်ခန်းစာတွင် arrow functions, classes, let နှင့် const စသည့် statements များကို အသုံးပြုပါသည်။ ES6 code ကို ဘယ်လို compileလုပ်လဲဆိုသည်ကို လေ့လာရန် [Babel REPL](babel://es5-syntax-example) တွင် လေ့လာနိုင်သည်။
 
-## Setup for the Tutorial {#setup-for-the-tutorial}
+## သင်ခန်းစာအတွက် ပြင်ဆင်ခြင်း {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+ဒီသင်ခန်းစာကို ပြီးမြောက်ရန် နည်းလမ်းနှစ်မျိုးရှိပါသည်။ browser တွင် code ကို ရေးသောနည်း သို့မဟုတ် သင်၏ compute ထဲတွင် Local Development Environment တစ်ခုတည်ဆောက်သော နည်းတို့ဖြစ်သည်။
 
-### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
+### ပြင်ဆင်ခြင်း နည်းလမ်း ၁: Browser တွင် Code ရေးခြင်း {#setup-option-1-write-code-in-the-browser}
 
-This is the quickest way to get started!
+ဒီနည်းလမ်းသည် စတင်ဆောင်ရွက်ရန် အမြန်ဆုံးဖြစ်ပါသည်။
 
-First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+ပထမဦးစွာ browser တွင် **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** ကို tabအသစ်ဖြင့် ဖွင့်ပါ။ tab အသစ်တွင် tic-tac-toe Game Board အလွတ်တစ်ခုနှင့် React codeကို ပြပါလိမ့်မည်။ ဒီသင်ခန်းစာတွင် ကျွန်ုပ်တို့သည် React codeကို ပြင်ဆင်ပါမည်။
 
-You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
+ယခု သင်သည် ဒုတိယနည်းလမ်းကို ကျော်သွားနိုင်ပြီး React ၏ အခြခံအကျဥ်းချုပ်ကို လေ့လာရန် [Overview](#overview) အခန်းကဏ္ဍကို သွားနိုင်ပါသည်။
 
-### Setup Option 2: Local Development Environment {#setup-option-2-local-development-environment}
+### ပြင်ဆင်ခြင်း နည်းလမ်း ၂: Local Development Environment {#setup-option-2-local-development-environment}
 
-This is completely optional and not required for this tutorial!
+ဤနည်းလမ်းသည် ယခုသင်ခန်းစာအတွက် မဖြစ်မနေမလိုအပ်ပါ။
 
 <br>
 
 <details>
 
-<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
+<summary><b>Optional: သင့်စက်ထဲတွင် လမ်းညွှန်ချက်တွေကို လိုက်ပါလုပ်ဆောင်ဖို့အတွက် သင်ကြိုက်တဲ့ text editorကို အသုံးပြုနိုင်ပါသည်။</b></summary>
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
+ဤနည်းလမ်းသည် အလုပ်များသော်လည်း သင်ရွေးချယ်ထားသော text editor ကို သုံး၍ သင်ခန်းစာကို ပြီးမြောက်ရန် လုပ်ဆောင်နိုင်ပါသည်။ လုပ်ဆောင်ရမည့် အဆင့်များမှာ- 
 
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
+၁။ [Node.js](https://nodejs.org/en/) ၏ လက်ရှိ version ကို ထည့်သွင်းပါ။  
+၂။ Project အသစ်တစ်ခုပြုလုပ်ရန် [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) မှ ညွှန်ကြားချက်များကို လိုက်နာပါ။
 
 ```bash
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+၃. project ၏ `src/` folder ထဲမှ ဖိုင်အားလုံးကို ဖျက်ပါ။
 
-> Note:
+> သတိပြုရန်:
 >
->**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
+>**ရှိပြီးသား `src` folder ကို ဖျက်ရန်မလိုပါ။ ၄င်းထဲတွင်ရှိသော မူရင်းဖိုင်များကိုသာ ဆိုလိုခြင်းဖြစ်ပါသည်။** နောက်တစ်ဆင့်တွင် ဥပမာများနှင့်အတူ မူရင်းဖိုင်များကို ပြန်လည်အစားထိုးပါမည်။
 
 ```bash
 cd my-app
@@ -98,11 +98,11 @@ del *
 cd ..
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+4. [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100) ဖြင့် `src/` folder ထဲတွင် `index.css` အမည်ဖြင့် ဖိုင်တစ်ခုထည့်သွင်းပါ။
 
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+5. [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010) ဖြင့် `src/` folder ထဲတွင် `index.js` အမည်ဖြင့် ဖိုင်တစ်ခုထည့်သွင်းပါ။
 
-6. Add these three lines to the top of `index.js` in the `src/` folder:
+6. `src/` folder ထဲမှ `index.js` ဖိုင်၏ အပေါ်ဘက်တွင် အောက်ပါသုံးကြောင်းကို ထည့်ပါ။
 
 ```js
 import React from 'react';
@@ -110,25 +110,25 @@ import ReactDOM from 'react-dom';
 import './index.css';
 ```
 
-Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
+ယခု project folder ထဲတွင် `npm start` ဆိုသော command ကို run ပြီး browser ထဲတွင် `http://localhost:3000` ကို ဖွင့်လိုက်လျှင် tic-tac-toe အကွက်လွတ်တစ်ခုကို သင်မြင်ရပါလိမ့်မည်။
 
-We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
+သင့်၏ editor အတွက် syntax highlighting ကို configure လုပ်ရန် ဤညွှန်ကြားချက် [these instructions](https://babeljs.io/docs/editors/) ကို လိုက်နာဖို့ အကြံပြုပါသည်။
 
 </details>
 
-### Help, I'm Stuck! {#help-im-stuck}
+### ကူညီပါ, ငါအခက်ခဲကြုံနေပြီ! {#help-im-stuck}
 
-If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux Chat](https://discord.gg/reactiflux) is a great way to get help quickly. If you don't receive an answer, or if you remain stuck, please file an issue, and we'll help you out.
+သင်အခက်ခဲကြုံနေလျှင် [community support resources](/community/support.html) ကို ကြည့်ရှုလေ့လာ  ပါ။ အထူးသဖြင့် [Reactiflux Chat](https://discord.gg/reactiflux) သည် အကူညီကို လျှင်မြန်စွာရယူရန် နည်းလမ်းကောင်းတစ်ခုဖြစ်ပါသည်။ သင်သည်အဖြေကို မရရှိလျှင် (သို့မဟုတ်) အခက်ခဲကြုံနေသေးလျှင် ကျေးဇူးပြု၍ ပြသနာကိုတင်ပြပြီး ငါတို့အကူညီကို ရယူပါ။
 
-## Overview {#overview}
+## အနှစ်ချုပ် {#overview}
 
-Now that you're set up, let's get an overview of React!
+set up လုပ်ပြီးပါက React ၏ အနှစ်ချုပ်ကို ကြည့်ကြရအောင်။
 
-### What Is React? {#what-is-react}
+### React ဆိုတာဘာလဲ? {#what-is-react}
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you compose complex UIs from small and isolated pieces of code called "components".
+React သည် user interfaces တည်ဆောက်ရန်အတွက် ပြောင်းလွယ်ပြင်လွယ်ပြီး ထိရောက်သော၊ declarative ရေးသားနည်းပုံစံ အသုံးပြုထားသော Javascript library ဖြစ်သည်။ ၄င်းသည် "components" ဟု ခေါ်သော သေးငယ်ပြီး သီးသန့်ရှိသော code အစိတ်အပိုင်းလေးများမှ ရှုပ်ထွေးသော UI များကို ရေးသားနိုင်သည်။
 
-React has a few different kinds of components, but we'll start with `React.Component` subclasses:
+Reactတွင် အနည်းငယ်မတူညီသော components များ ရှိကြသော်လည်း `React.Component` subclasses များနှင့် စတင်ပါမည်-
 
 ```javascript
 class ShoppingList extends React.Component {
@@ -149,11 +149,11 @@ class ShoppingList extends React.Component {
 // Example usage: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+မကြာမီတွင် ငါတို့သည် XML-like tag များကို ရရှိပါလိမ့်မည်။ Screen ပေါ်တွင် ကျွန်ုပ်တို့အလိုရှိရာကို Reactအား ခိုင်းစေရန် component များကို အသုံးပြုပါသည်။ component ၏ အချက်အလက်အချို့ပြောင်းလဲသွားသောအခါ Reactသည် ကျွန်ုပ်တို့၏ component များကို လိုအပ်ချက်အလိုက် ပြုပြင်မွမ်းမံခြင်းနှင့် re-render ကို လုပ်ပါလိမ့်မည်။
 
-Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
+အထက်ပါပုံကို ကြည့်ပါ။ ShoppingList သည် **React component class** (သို့မဟုတ်) **React component type** တစ်ခုဖြစ်ပါသည်။ component တစ်ခုသည် `props` ("properties" ၏ အတိုကောက်) ကို parameter ထဲတွင် ယူပြီး `render` method မှ တစ်ဆင့် ပြသရန် viewsများကို အဆင့်ဆင့်ပြန်ပေးသည်။
 
-The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+`render` method သည် screen ပေါ်တွင်သင်မြင်တွေ့လိုသော *ဖော်ပြချက်တစ်ခုကို* ပြန်ပေးပါသည်။ React သည် ဖော်ပြချက်ကို ရယူပြီး ရလဒ်ကို ပြသပါသည်။ အထူးသဖြင့် `render` မှ ပြန်ပေးလိုက်သော **React element** တစ်ခုသည် ဘာကို render လုပ်မလဲ ဆိုတာ၏ ပေါ့ပါးသော ဖော်ပြချက်တစ်ခုဖြစ်ပါသည်။ React Developers အများစုသည် "JSX" ဟုခေါ်သော ဤနည်းစနစ်များကို ရေးသားရန်ပိုမိုလွယ်ကူသည့် Special Syntax တစ်ခုကို အသုံးပြုပါသည်။ `<div />` syntax သည် တည်ဆောက်ချိန်တွင် `React.createElement('div')` သို့ ပြောင်းလဲပါသည်။ အထက်တွင် ဖော်ပြခဲ့သော ဥပမာနှင့် တူပါသည်-
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -162,35 +162,35 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](babel://tutorial-expanded-version)
+[အကျယ်ကို ဤတွင် ကြည့်ပါ။](babel://tutorial-expanded-version)
 
-If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it in this tutorial. Instead, we will keep using JSX.
+သင်သိလိုလျှင် `createElement()` ကို [API reference](/docs/react-api.html#createelement) ထဲတွင် အသေးစိတ်ဖော်ပြထားပါသည်။ သို့သော်လည်း ၄င်းကို သင်ခန်းစာထဲတွင် အသုံးပြုမည်မဟုတ်ပါ။ ၄င်းအစား JSX ကို ဆက်လက်အသုံးပြုသွားပါမည်။
 
-JSX comes with the full power of JavaScript. You can put *any* JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
+JSXသည် JavaScript ၏ စွမ်းအားအပြည့်ပါရှိပါသည်။ ထို့ကြောင့် *မည်သည့်* JavaScript အသုံးနှုန်းကိုမဆို JSX ထဲရှိ ကွင်းထဲတွင် ထည့်ထားနိုင်သည်။ React element တစ်ခုချင်းစီသည် JavaScript ၏ object တစ်ခုဖြစ်ပြီး ၄င်းတို့ကို variable တစ်ခုထဲတွင် သိမ်းနိုင်သည် (သို့မဟုတ်) program တစ်လျှောက် လှည့်ပတ်အသုံးပြုနိုင်သည်။
 
-The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+အထက်တွင် ပါရှိသော `ShoppingList` component သည် `<div />` နှင့် `<li />` ကဲသို့သော built-in DOM Components များကိုသာ render လုပ်ပါသည်။ သို့သော် ကြိုက်နှစ်သက်ရာ React Component များကိုလည်း compose, render လုပ်နိုင်ပါသည်။ ဥပမာ `<ShoppingList />` ဟု ရေးသားလိုက်ခြင်းဖြင့် `ShoppingList` component တစ်ခုလုံးကို ရည်ညွှန်းနိုင်ပါသည်။ React Component တစ်ခုချင်းသည် အတိုဆုံးနှင့်အရှင်းဆုံးဖော်ပြပြီး လွတ်လပ်စွာ လှည့်ပတ်နိုင်ပါသည်။ ၄င်းသည် ရိုးရှင်းသော component များမှ ရှုပ်ထွေးသော UI များကို တည်ဆောက်နိုင်ပါသည်။ 
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+## Starter Code ကို စစ်ဆေးခြင်း {#inspecting-the-starter-code}
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+သင်ခန်းစာကို **Browser** တွင် လုပ်လိုလျှင် new tab တစ်ခုတွင် ဤ **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** ကို ဖွင့်ပါ။ သင်ခန်းစာကို **သင့်စက်ထဲတွင်** လုပ်လိုလျှင် သင့် Project Folder ထဲမှ `src/index.js` ကို ဖွင့်ပါ ([setup](#setup-option-2-local-development-environment) လုပ်စဉ်အတောတွင်း ဤဖိုင်ကို သင်ထိတွေ့ခဲ့ပြီးပါပြီ)။ 
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+ဤ Starter Code သည် ကျွန်ုပ်တို့ တည်ဆောက်နေသောအရာ၏ အခြေခံဖြစ်ပါသည်။ ကျွန်ုပ်တို့သည် CSS ကို ထောက်ပံ့ပေးပါသည်။ ထို့ကြောင့် သင်အနေနှင့် React လေ့လာချင်းအပေါ် နှင့် tic-tac-toe game ကို ရေးဆွဲရာတွင်သာ အာရုံစိုက်ရန် လိုပါသည်။
 
-By inspecting the code, you'll notice that we have three React components:
+Code ကို စစ်ဆေးခြင်းအားဖြင့် React Components သုံးခုရှိသည်ကို သင်သတိပြုမိလိမ့်မည်။ 
 
 * Square
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+Square Component သည် `<button>` တစ်ခုတည်းကို render လုပ်ပြီး Board သည် စတုရန်းကွက် ၉ ကွက်ကို render လုပ်သည်။ Game Component သည် နေရာချမည့် တန်ဖိုးများပါဝင်သည့် board တစ်ခုကို render လုပ်ပါသည်။ ၄င်းကိုတော့ နောက်မှ ပြန်လည်ပြုပြင်ပါမည်။ ယခုအချိန်တွင် componentများသည် interactive မဖြစ်သေးပါ။
 
-### Passing Data Through Props {#passing-data-through-props}
+### Prop များမှ တစ်ဆင့် ဒေတာပေးပို့ခြင်း {#passing-data-through-props}
 
-To get our feet wet, let's try passing some data from our Board component to our Square component.
+Board Component မှ Square Component ဆီသို့ ဒေတာအချို့ကို ကူးပြောင်းကြည့်ကြပါစို့။
 
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
+သင်ခန်းစာကို လက်တွေ့လုပ်ဆောင်နေချိန်မှာ code တွေကို ကူးချခြင်းမပြုဘဲ လက်နဲ့ရေးရန် အထူးအကြံပြုပါသည်။ ဤအရာသည် သင်၏ မှတ်ညာဏ်ကို ပိုမိုကောင်းလာစေရန် နှင့် ပိုမိုနားလည်သဘောပေါက်စေရန် ကူညီပါလိမ့်မည်။
 
-In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
+Board Component ၏ `renderSquare` method အတွင်းတွင် Square Component သို့ `value` ဟုခေါ်သော prop တစ်ခုကို ပေးပို့ရန် code ကို ပြင်ဆင်ပါ။
 
 ```js{3}
 class Board extends React.Component {
@@ -199,8 +199,7 @@ class Board extends React.Component {
   }
 }
 ```
-
-Change Square's `render` method to show that value by replacing `{/* TODO */}` with `{this.props.value}`:
+`{/* TODO */}` ကို `{this.props.value}` နှင့် အစားထိုးခြင်းဖြင့် ၄င်း၏ တန်ဖိုးကို ပြသရန် Square Component ၏ `render` Method ကို ပြင်ဆင်ပါ။
 
 ```js{5}
 class Square extends React.Component {
@@ -214,22 +213,21 @@ class Square extends React.Component {
 }
 ```
 
-Before:
+မပြင်ဆင်မီ:
 
 ![React Devtools](../images/tutorial/tictac-empty.png)
 
-After: You should see a number in each square in the rendered output.
+ပြင်ဆင်ပြီး: စတုရန်းကွက်တိုင်း၏ အတွင်းတွင် နံပါတ်တစ်ခုကို မြင်တွေ့နိုင်ပါသည်။
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[ဤနေရာတွင် Code အပြည့်စုံကို ကြည့်ပါ](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+ဂုဏ်ယူပါတယ်! Board Component မှ Square Component ဆီသို့ "prop တစ်ခုကို သင်ပေးပို့"လိုက်ပါပြီ။ React app များတွင် props ပေးပို့ခြင်းသည် Parent Component များမှ Child Component ဆီသို့ အချက်အလက်များစီးဆင်းပုံဖြစ်သည်။
 
-### Making an Interactive Component {#making-an-interactive-component}
+### Interactive Component တစ်ခုပြုလုပ်ခြင်း {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it.
-First, change the button tag that is returned from the Square component's `render()` function to this:
+Square Component ကို နှိပ်လိုက်ချိန်တွင် "X" နှင့် ဖြည့်စွက်အစားထိုးပါ။ ပထမဦးစွာ Square Component ၏ `render()` Function မှ ပြန်လာသော button tag ကို ပြောင်းလဲပြင်ဆင်ပါ။
 
 ```javascript{4}
 class Square extends React.Component {
@@ -243,11 +241,11 @@ class Square extends React.Component {
 }
 ```
 
-If you click on a Square now, you should see an alert in your browser.
+စတုရန်းတစ်ကွက်ပေါ်သို့ နှိပ်လိုက်လျှင် Browser ၌ alert box တစ်ခုကို မြင်နိုင်ပါသည်။
 
->Note
+>မှတ်ချက်
 >
->To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>စာရိုက်ခြင်းကို သက်သာစေရန်နှင့် [`၄င်း၏` ရှုပ်ထွေးမှုများ](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) မဖြစ်စေရန် အောက်တွင်ဖော်ပြထားသော [arrow function ရေးထုံးကို](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) Event Handler များအတွက် အသုံးပြုပါမည်။ 
 >
 >```javascript{4}
 >class Square extends React.Component {
@@ -261,13 +259,13 @@ If you click on a Square now, you should see an alert in your browser.
 >}
 >```
 >
->Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. React will only call this function after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
+> `onClick={() => alert('click')}` နှင့်အတူ `onClick` prop ကဲသို့ *function တစ်ခုကို* ဘယ်လိုပေးပို့လဲဆိုတာ သတိပြုပါ။ `() =>` ကို မေ့ထားပြီး `onClick={alert('click')}` ဟု ရေးခြင်းသည် မှားနေကျ အမှားတစ်ခုဖြစ်ပြီး Component ကို re-render လုပ်သည့် အချိန်တိုင်းတွင် alert box ကို ဖော်ပြနေမည်။
 
-As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
+နောက်တစ်ဆင့်အနေဖြင့် Square Component ကို နှိပ်လိုက်ကြောင်း "သိစေပြီး" ၄င်းကို "X" အမှတ်အသားဖြင့် ဖြည့်စွက်လိုသည်။ ထိုအရာများကို သိစေရန် Component များသည် **state** ကို သုံးပါသည်။
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React Component များသည် သူတို့၏ Constructorများထဲတွင် `this.state` ကို ထည့်သွင်းကြော်ငြာခြင်းဖြင့် state ကို ရရှိနိုင်ပါသည်။ `this.state` ကို ၄င်းအားသတ်မှတ်ထားသော React Component တစ်ခုထဲမှာဘဲ private အဖြစ် ထည့်သွင်းစဥ်းစားသင့်သည်။ `this.state` ထဲတွင် Square Component ၏ လက်ရှိတန်ဖိုးကို သိမ်းဆည်းပြီး Square Component ကို နှိပ်လိုက်သောအခါ ၄င်းကို ပြောင်းလဲကြပါစို့။
 
-First, we'll add a constructor to the class to initialize the state:
+ပထမဦးစွာ state ကို စတင်ရန် Class အတွင်းတွင် Constructor တစ်ခု ထည့်ပါမည်။
 
 ```javascript{2-7}
 class Square extends React.Component {
@@ -288,17 +286,17 @@ class Square extends React.Component {
 }
 ```
 
->Note
+>မှတ်ချက်
 >
->In [JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), you need to always call `super` when defining the constructor of a subclass. All React component classes that have a `constructor` should start with a `super(props)` call.
+>[JavaScript classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes) များတွင် Subclass တစ်ခု၏ Constructor သတ်မှတ်သောအခါ `super` ဟု အမြဲခေါ်ပေးရန် လိုအပ်ပါသည်။ `constructor` တစ်ခုရှိသော React Component Class များအားလုံးသည် `super(props)` တစ်ခုကို ခေါ်ခြင်းနှင့် စတင်သင့်ပါသည်။
 
-Now we'll change the Square's `render` method to display the current state's value when clicked:
+click နှိပ်လိုက်ချိန်တွင် လက်ရှိ state ၏ တန်ဖိုးကို ဖော်ပြရန် Square ၏ `render` method ကို ပြောင်းလဲပါမည်။
 
-* Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
-* Put the `className` and `onClick` props on separate lines for better readability.
+* `<button>` tag အတွင်းတ္ငင်`this.state.value` နှင့် `this.props.value` ကို အစားထိုးပါ။
+* `onClick={() => this.setState({value: 'X'})}` နှင့် `onClick={...}` ကို အစားထိုးပါ။
+* ဖတ်ရပိုမိုလွယ်ကူစေရန် `className` နှင့် `onClick` prop များကို သီးခြားလိုင်းများပေါ်တွင် ထားပါ။
 
-After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
+ထိုပြောင်းလဲမှုများပြီးသွားသောအခါ Square ၏ `render` method ဖြင့် ပြန်လာသော `<button>` tag ကို မြင်ရပါသည်။
 
 ```javascript{12-13,15}
 class Square extends React.Component {
@@ -322,36 +320,36 @@ class Square extends React.Component {
 }
 ```
 
-By calling `this.setState` from an `onClick` handler in the Square's `render` method, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
+Square ၏ `render` method အတွင်းတွင် `onClick` handler တစ်ခုမှ `this.setState` ကို ခေါ်ခြင်းအားဖြင့် `<button>` နှိပ်လိုက်တိုင်း ဤ Square ကို re-render လုပ်ရန် React ကို ပြောသည်။ ဤပြင်ဆင်မှုပြီးနောက် Square ၏ `this.state.value` သည် `'X'` ဖြစ်လာသည်။ ထို့ကြောင့် Game Board ပေါ်တွင် `X` ကို မြင်ရပါလိမ့်မည်။ မည်သည့် စတုရန်းကွက်ပေါ်မဆို နှိပ်လိုက်လျှင် `X` တစ်ခုပေါ်လာလိမ့်မည်။
 
-When you call `setState` in a component, React automatically updates the child components inside of it too.
+Component တစ်ခုအတွင်းတွင် `setState` ကို ခေါ်လိုက်သောအခါ React သည် ၄င်းအတွင်းမှာရှိသည့် Child Component များကို ထိုနည်းတူ အလိုလျောက်ပြင်ဆင်ပါသည်။
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[ဤနေရာတွင် Code အပြည့်စုံကို ကြည့်ပါ](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### Developer Tools {#developer-tools}
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+[Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) နှင့် [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) များအတွက် React Devtools extension သည် browser ၏ developer tools များနှင့်အတူ React component tree အားစစ်ဆေးခွင့်ပြုသည်။
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+React DevTool များသည် React Component များ၏ prop များနှင့် state ကို စစ်ဆေးခွင့်ပြုသည်။
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
+React DevTool များ သွင်းပြီးနောက် Developer Tool များအား ဖွင့်ရန် Page ပေါ်မှ မည်သည့် element ပေါ်တွင်မဆို right-click နှိပ်ပြီး "Inspect" ကို နှိပ်ပါ။ React tab များဖြစ်သည့် ("⚛️ Components" and "⚛️ Profiler") တို့သည် ညာဘက်အစွန်ဆုံးတွင် ပေါ်လာလိမ့်မည်။ Component Tree ကို စစ်ဆေးရန် "⚛️ Components" ကို အသုံးပြုပါ။
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**သို့သော်, ၄င်းကို CodePen နှင့် အလုပ်လုပ်ရန် အဆင့်အနည်းငယ်ရှိသည်ကို သတိပြုပါ၊**
 
-1. Log in or register and confirm your email (required to prevent spam).
-2. Click the "Fork" button.
-3. Click "Change View" and then choose "Debug mode".
-4. In the new tab that opens, the devtools should now have a React tab.
+1. Log in or register လုပ်ပြီး သင့် email ကို အတည်ပြုပါ (spam များကို ကာကွယ်ရန် လိုအပ်သည်)။
+2. "Fork" button ကို နှိပ်ပါ။
+3. "Change View" ကို နှိပ်ပြီးနောက် "Debug mode" ကို ရွေးပါ။
+4. ပွင့်လာသော new tab အတွင်းတွင်, Devtool များသည် React tab တစ်ခုရှိသင့်သည်။
 
-## Completing the Game {#completing-the-game}
+## Game ပြီးဆုံးခြင်း {#completing-the-game}
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
+ယခုတွင် ကျွန်ုပ်တို့၏ tic-tac-toe game အတွက် အခြခံအုတ်မြစ်များရှိနေပါပြီ။ ပြီးပြည့်စုံသော game တစ်ခုရရှိရန် "X" များနှင့် "O" များကို game board ပေါ်တွင် အစားထိုးနေရာချရန် လိုအပ်ပြီး အနိုင်ရရှိသူကို သတ်မှတ်ရန် နည်းလမ်းတစ်ခုလိုအပ်ပါသည်။
 
 ### Lifting State Up {#lifting-state-up}
 
-Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+လက်ရှိတွင် Square Component တစ်ခုစီသည် Game ၏ state ကို ထိန်းသိမ်းထားသည်။ အနိုင်ရရှိသူကို ကြေငြာရန် တစ်နေရာတည်းတွင် စတုရန်း ၉ ကွက်လုံး၏ တန်ဖိုးတစ်ခုချင်းစီကို ထိန်းသိမ်းရလိမ့်မည်။
 
 We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
 
